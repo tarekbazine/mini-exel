@@ -7,7 +7,7 @@
 %}
 
 %token <val> NOMBRE 
-%token MOY SIP
+%token MOY SIP VARIANCE MIN MAX SOMME
 %token  PLUS  MOINS FOIS  DIVISE 
 %token  PARENTHESE_GAUCHE PARENTHESE_DROITE
 %token  FIN EQ
@@ -54,6 +54,36 @@ FONCTION : MOY PARENTHESE_GAUCHE L PARENTHESE_DROITE {
 					m = m + $3.vals[i];
 				}
 				$$ = m / $3.size; }
+|MIN PARENTHESE_GAUCHE L PARENTHESE_DROITE { 
+				float min = $3.vals[0];
+				for(int i=1;i<$3.size;i++){
+					if($3.vals[i]<min) min = $3.vals[i];
+				}
+				$$ = min; }
+|MAX PARENTHESE_GAUCHE L PARENTHESE_DROITE { 
+				float max = $3.vals[0];
+				for(int i=1;i<$3.size;i++){
+					if($3.vals[i]>max) max = $3.vals[i];
+				}
+				$$ = max; }
+|SOMME PARENTHESE_GAUCHE L PARENTHESE_DROITE { 
+				float som = 0;
+				for(int i=0;i<$3.size;i++){
+					som = som + $3.vals[i];
+				}
+				$$ = som ; }
+|VARIANCE PARENTHESE_GAUCHE L PARENTHESE_DROITE { 
+				float m = 0,sommeDiffCarre = 0;
+				for(int i=0;i<$3.size;i++){
+					m = m + $3.vals[i];
+				}
+				m = m / $3.size;
+				
+				for(int i=0;i<$3.size;i++){
+					sommeDiffCarre = sommeDiffCarre + pow( m - $3.vals[i] , 2 );
+				}
+				$$ = sommeDiffCarre / $3.size;
+ 				}
 ;
 
 L : L SIP E {

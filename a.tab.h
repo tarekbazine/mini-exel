@@ -48,14 +48,18 @@ extern int yydebug;
     NOMBRE = 258,
     MOY = 259,
     SIP = 260,
-    PLUS = 261,
-    MOINS = 262,
-    FOIS = 263,
-    DIVISE = 264,
-    PARENTHESE_GAUCHE = 265,
-    PARENTHESE_DROITE = 266,
-    FIN = 267,
-    EQ = 268
+    VARIANCE = 261,
+    MIN = 262,
+    MAX = 263,
+    SOMME = 264,
+    PLUS = 265,
+    MOINS = 266,
+    FOIS = 267,
+    DIVISE = 268,
+    PARENTHESE_GAUCHE = 269,
+    PARENTHESE_DROITE = 270,
+    FIN = 271,
+    EQ = 272
   };
 #endif
 
@@ -72,7 +76,7 @@ union YYSTYPE
 	} valTab;  
 	float  val;
 
-#line 76 "a.tab.h" /* yacc.c:1909  */
+#line 80 "a.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

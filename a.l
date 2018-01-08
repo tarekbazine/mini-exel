@@ -40,6 +40,14 @@ reel	  {entier}\.{entier}
 
 "moy"  return(MOY);
 
+"var"  return(VARIANCE);
+
+"min"  return(MIN);
+
+"max"  return(MAX);
+
+"som"  return(SOMME);
+
 ","  return(SIP);
 
 "=" return(EQ);
