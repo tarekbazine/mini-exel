@@ -22,6 +22,8 @@
 	int size;
 } 
 
+%error-verbose
+
 %type <moy> E F L Ligne T
 
 %start s

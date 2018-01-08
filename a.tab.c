@@ -85,7 +85,7 @@
 # undef YYERROR_VERBOSE
 # define YYERROR_VERBOSE 1
 #else
-# define YYERROR_VERBOSE 0
+# define YYERROR_VERBOSE 1
 #endif
 
 /* In a future release of Bison, this section will be replaced
@@ -449,12 +449,12 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    29,    29,    30,    32,    35,    36,    37,    40,    41,
-      42,    45,    46,    47,    55,    60
+       0,    31,    31,    32,    34,    37,    38,    39,    42,    43,
+      44,    47,    48,    49,    57,    62
 };
 #endif
 
-#if YYDEBUG || YYERROR_VERBOSE || 0
+#if YYDEBUG || YYERROR_VERBOSE || 1
 /* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
@@ -1230,49 +1230,49 @@ yyreduce:
   switch (yyn)
     {
         case 4:
-#line 32 "a.y" /* yacc.c:1646  */
+#line 34 "a.y" /* yacc.c:1646  */
     { printf("Resultat : %f\n",(yyvsp[-1].moy).val); }
 #line 1236 "a.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 35 "a.y" /* yacc.c:1646  */
+#line 37 "a.y" /* yacc.c:1646  */
     { (yyval.moy).val=(yyvsp[-2].moy).val+(yyvsp[0].moy).val; }
 #line 1242 "a.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 36 "a.y" /* yacc.c:1646  */
+#line 38 "a.y" /* yacc.c:1646  */
     { (yyval.moy).val=(yyvsp[-2].moy).val-(yyvsp[0].moy).val; }
 #line 1248 "a.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 40 "a.y" /* yacc.c:1646  */
+#line 42 "a.y" /* yacc.c:1646  */
     { (yyval.moy).val=(yyvsp[-2].moy).val*(yyvsp[0].moy).val; }
 #line 1254 "a.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 41 "a.y" /* yacc.c:1646  */
+#line 43 "a.y" /* yacc.c:1646  */
     { (yyval.moy).val=(yyvsp[-2].moy).val/(yyvsp[0].moy).val; }
 #line 1260 "a.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 45 "a.y" /* yacc.c:1646  */
+#line 47 "a.y" /* yacc.c:1646  */
     { (yyval.moy).val=(yyvsp[-1].moy).val; }
 #line 1266 "a.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 46 "a.y" /* yacc.c:1646  */
+#line 48 "a.y" /* yacc.c:1646  */
     {(yyval.moy).val = (yyvsp[0].val);}
 #line 1272 "a.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 47 "a.y" /* yacc.c:1646  */
+#line 49 "a.y" /* yacc.c:1646  */
     { 
 				//float m = 0;
 				//for(int i=0;i<size;i++){
@@ -1283,7 +1283,7 @@ yyreduce:
     break;
 
   case 14:
-#line 55 "a.y" /* yacc.c:1646  */
+#line 57 "a.y" /* yacc.c:1646  */
     { 
 	printf("bfffLIST : %f  size: %d\n",(yyvsp[0].moy).val,(yyval.moy).size);
 	(yyval.moy).val=(yyval.moy).val +(yyvsp[0].moy).val; 
@@ -1293,7 +1293,7 @@ yyreduce:
     break;
 
   case 15:
-#line 60 "a.y" /* yacc.c:1646  */
+#line 62 "a.y" /* yacc.c:1646  */
     { 
 	printf("Bfff : %f  size: %d\n",(yyvsp[0].moy).val,(yyval.moy).size);
 	(yyval.moy).val= (yyvsp[0].moy).val; 
@@ -1531,7 +1531,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 67 "a.y" /* yacc.c:1906  */
+#line 69 "a.y" /* yacc.c:1906  */
 
 
 int yyerror(char *s) {
