@@ -13,57 +13,59 @@
 %token  FIN EQ
 
 %union {
-	struct moy{
-		float  val;
+	struct valTab{
+		float vals[100];
 		int size;
-	} moy;  
-	float tab[100];
+	} valTab;  
 	float  val;
-	int size;
 } 
 
 %error-verbose
 
-%type <moy> E F L Ligne T
+%type <valTab> L
+%type <val> E F Ligne T FONCTION
 
 %start s
 %%
 s : Ligne s 
 | Ligne;
 
-Ligne: EQ E FIN  { printf("Resultat : %f\n",$2.val); }
+Ligne: EQ E FIN  { printf("Resultat : %f\n",$2); }
   ;
 
-E : E PLUS T { $$.val=$1.val+$3.val; }
-| E MOINS T { $$.val=$1.val-$3.val; }
+E : E PLUS T { $$=$1+$3; }
+| E MOINS T { $$=$1-$3; }
 | T 
 ;
 
-T : T FOIS F { $$.val=$1.val*$3.val; }
-| T DIVISE F { $$.val=$1.val/$3.val; }
+T : T FOIS F { $$=$1*$3; }
+| T DIVISE F { $$=$1/$3; }
 | F
 ;
 
-F :PARENTHESE_GAUCHE E PARENTHESE_DROITE  { $$.val=$2.val; }
-| NOMBRE {$$.val = $1;}
-| MOY PARENTHESE_GAUCHE L PARENTHESE_DROITE { 
-				//float m = 0;
-				//for(int i=0;i<size;i++){
-				//	m = 
-				//}
-				$$.val = $3.val/($3.size+1); }
+F :PARENTHESE_GAUCHE E PARENTHESE_DROITE  { $$=$2; }
+| NOMBRE {$$ = $1;}
+| FONCTION {$$ = $1;}
 ;
 
-L : L SIP E { 
-	printf("bfffLIST : %f  size: %d\n",$3.val,$$.size);
-	$$.val=$$.val +$3.val; 
+FONCTION : MOY PARENTHESE_GAUCHE L PARENTHESE_DROITE { 
+				float m = 0;
+				for(int i=0;i<$3.size;i++){
+					m = m + $3.vals[i];
+				}
+				$$ = m / $3.size; }
+;
+
+L : L SIP E {
+	printf("bfffLIST : %f  size: %d\n",$3,$$.size);
+	$$.vals[$$.size] = $3; 
 	$$.size++;
-	printf("AdddLIST : %f size: %d vallist %f\n\n",$3.val,$$.size,$$.val);  }
+	printf("AdddLIST : %f size: %d vallist %f\n\n",$3,$$.size,$$.vals[0]);  }
 | E { 
-	printf("Bfff : %f  size: %d\n",$1.val,$$.size);
-	$$.val= $1.val; 
-	//$$.size++;
-	printf("Addd : %f size: %d\n\n",$1.val,$$.size); }
+	printf("Bfff : %f  size: %d\n",$1,$$.size);
+	$$.vals[$$.size] = $1; 
+	$$.size++;
+	printf("Addd : %f size: %d\n\n",$1,$$.size); }
 ;
 
 %%

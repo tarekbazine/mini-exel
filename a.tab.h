@@ -66,15 +66,13 @@ union YYSTYPE
 {
 #line 15 "a.y" /* yacc.c:1909  */
 
-	struct moy{
-		float  val;
+	struct valTab{
+		float vals[100];
 		int size;
-	} moy;  
-	float tab[100];
+	} valTab;  
 	float  val;
-	int size;
 
-#line 78 "a.tab.h" /* yacc.c:1909  */
+#line 76 "a.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
